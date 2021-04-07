@@ -1,4 +1,4 @@
-# Twitch Streamer Data Api
+# Twitch Streamer Api
 This is a Twitch data api which will automatically update and cache the streamer data.
 
 # How does it work?
