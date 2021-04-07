@@ -1,0 +1,9 @@
+{
+    "twitch_clientID": "TWITCH_CLIENT_ID",
+    "twitch_secret": "TWITCH_SECRET",
+    "cron": "*/10 * * * *",
+    "port": 8088,
+    "endpoint": "/StreamerData",
+    "authToken": "",
+    "channels": []
+}

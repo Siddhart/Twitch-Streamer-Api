@@ -1,0 +1,24 @@
+[
+    {
+        "streamerName": "joostvhoof",
+        "title": "Farming met deze boys",
+        "game": false,
+        "viewers": false,
+        "is_live": false,
+        "startedAt": "",
+        "language": "nl",
+        "tags": []
+    },
+    {
+        "streamerName": "GameMeneer",
+        "title": "Cor Leon, Lotus seizoen 2 !merch | @GameMeneer",
+        "game": "Grand Theft Auto V",
+        "viewers": 1323,
+        "is_live": true,
+        "startedAt": "2021-04-07T18:59:27Z",
+        "language": "nl",
+        "tags": [
+            "e13e6734-37ae-4d85-897b-3015f0168355"
+        ]
+    }
+]
