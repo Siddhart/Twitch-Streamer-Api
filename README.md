@@ -7,7 +7,7 @@ The api uses the official Twitch api to get the streamer data. You will have to 
 # Installation
 First you will have to clone the project.
 ```console
-$ git clone https://github.com/Siddhartt/TwitchStreamerApi
+$ git clone https://github.com/Siddhartt/Twitch-Streamer-Api
 ```
 
 After that open the config.json file
