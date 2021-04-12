@@ -32,15 +32,16 @@ var Check = new CronJob(config.cron, async function () {
     const tempData = JSON.parse(fs.readFileSync('./config.json'));
 
     var cache = await Promise.all(tempData.channels.map(async function (chan, i) {
-        let StreamData = await Stream.getData(chan, tempData.twitch_clientID, tempData.authToken);
-        let Channeldata = await Channel.getData(chan, tempData.twitch_clientID, tempData.authToken);
+        var Channeldata = await Channel.getData(chan, tempData.twitch_clientID, tempData.authToken);
+        var StreamData = await Stream.getData(chan, tempData.twitch_clientID, tempData.authToken);
+        const url = `https://www.twitch.tv/${chan}`
         let returnData;
 
-        StreamData = StreamData.data[0]
-
         //return error when the assigned streamer does not exist
-        if (!Channeldata) return {
+        if (Channeldata == false) return {
             "streamerName": chan,
+            "channelURL": url,
+            "thumbnailURL":false,
             "title": false,
             "game": false,
             "viewers": false,
@@ -50,15 +51,18 @@ var Check = new CronJob(config.cron, async function () {
             "tags": [],
             "errors": [{ "error": "This user does not exist" }]
         };
-
-        //is the user is live return the livestream data
-        if (StreamData) {
+        
+        //this will run if the user is live
+        if (StreamData.data.length > 0) {
+            StreamData = StreamData.data[0]
             returnData = {
                 "streamerName": StreamData.user_name,
+                "channelURL": url,
+                "thumbnailURL":Channeldata.thumbnail_url,
                 "title": StreamData.title,
                 "game": StreamData.game_name,
                 "viewers": StreamData.viewer_count,
-                "is_live": Channeldata.is_live,
+                "is_live": "online",
                 "startedAt": StreamData.started_at,
                 "language": StreamData.language,
                 "tags": StreamData.tag_ids,
@@ -68,10 +72,12 @@ var Check = new CronJob(config.cron, async function () {
             //else we return the normal channel data
             returnData = {
                 "streamerName": Channeldata.display_name,
+                "channelURL": url,
+                "thumbnailURL":Channeldata.thumbnail_url,
                 "title": Channeldata.title,
-                "game": false,
-                "viewers": false,
-                "is_live": Channeldata.is_live,
+                "game": "unknown",
+                "viewers": 0,
+                "is_live": "offline",
                 "startedAt": Channeldata.started_at,
                 "language": Channeldata.broadcaster_language,
                 "tags": Channeldata.tag_ids,
@@ -79,7 +85,6 @@ var Check = new CronJob(config.cron, async function () {
             };
         };
 
-        //push the object to the cache array
         return returnData;
     }))
 
@@ -106,6 +111,5 @@ async function UpdateAuthConfig() {
     fs.writeFileSync('./config.json', JSON.stringify(tempConfig));
 }
 
-//start the timers
 updateAuth.start();
 Check.start();
