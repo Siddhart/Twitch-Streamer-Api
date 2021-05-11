@@ -43,7 +43,7 @@ In order for the bot to work properly you will have to install express, cron and
 $ npm install cron request express
 ```
 
-## Start the api
+## Run the script
 After you updated the config.json and installed the dependencies you can run the final command.
 Use the command in the same directory as the index.js file.
 ```console
