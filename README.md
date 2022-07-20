@@ -1,5 +1,5 @@
 # Twitch Streamer Api
-This is a Twitch data api which will automatically update and cache the streamer data. Check out a live demo on [Twitchfriends.com](https://live.twitchfriends.com).
+This is a Twitch data api which will automatically update and cache the streamer data. Check out a live demo on [live.ratexindex.com](https://live.ratexindex.com).
 
 # How does it work?
 The api uses the official Twitch api to get the streamer data. You will have to create a new application in the [Twitch developer console](https://dev.twitch.tv/console).
